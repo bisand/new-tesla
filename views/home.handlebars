@@ -1,0 +1,96 @@
+<style type="text/css">
+    body {
+        background-color: #282a2e;
+    }
+
+    .tftable {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: #c5c8c6;
+        width: 100%;
+        border-width: 1px;
+        border-color: #1d1f21;
+        border-collapse: collapse;
+        background-color: #282a2e;
+    }
+
+    .tftable th {
+        font-size: 18px;
+        background-color: #374b41;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #1d1f21;
+        text-align: left;
+        color: #c5c8c6;
+    }
+
+    .tftable tr {
+        background-color: #282a2e;
+    }
+
+    .tftable td {
+        font-size: 14px;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #1d1f21;
+    }
+
+    .tftable tr:hover {
+        background-color: #414037;
+    }
+
+    a {
+        color: inherit;
+    }
+</style>
+
+<table class="tftable" border="1">
+    <tr>
+        <th>Farge</th>
+        {{!-- <th>Name</th> --}}
+        <th>Modell</th>
+        <th>Pris</th>
+        {{!-- <th>Model</th> --}}
+        <th>KM</th>
+        <th>Sted</th>
+        <th>HF</th>
+        <th>Perf</th>
+        <th>Hjul</th>
+    </tr>
+
+    {{#each response.results}}
+    <tr id="row_{{@index}}" style="
+            {{#if isBlackAndTowing}}
+                background-color: #33aa33;
+                color: black;
+            {{else if isPerformance}}
+                {{#if Towing}}
+                    background-color: #ca8e66;
+                    color: black;
+                {{/if}}
+            {{else if isTowingOnly}}
+                background-color: #d4c92f;
+                color: black;
+            {{/if}}
+        ">
+
+        <td>
+            <a href="{{Link}}" target="_blank">
+                <img width="100"
+                    src="https://static-assets.tesla.com/configurator/compositor?context=design_studio_2?&bkba_opt=1&view=STUD_3QTR&size=1400&model=m3&options={{OptionCodeList}}&crop=1400,850,300,130&">
+            </a>
+        </td>
+        {{!-- <td><a href="{{Link}}" target="_blank">{{VIN}}</a></td> --}}
+        <td>{{Year}}</td>
+        <td><strong>{{Price}},-</strong></td>
+        {{!-- <td>{{Model}}</td> --}}
+        <td>{{Odometer}}</td>
+        <td>{{City}}</td>
+        <td>{{Towing}}</td>
+        <td>{{isPerformance}}</td>
+        <td>{{WHEELS}}</td>
+    </tr>
+    {{/each}}
+</table>
