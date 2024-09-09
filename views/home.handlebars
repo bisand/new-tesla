@@ -88,8 +88,8 @@
         {{!-- <td>{{Model}}</td> --}}
         <td>{{Odometer}}</td>
         <td>{{City}}</td>
-        <td>{{Towing}}</td>
-        <td>{{isPerformance}}</td>
+        <td>{{#if Towing}}JA{{else}}NEI{{/if}}</td>
+        <td>{{#if isPerformance}}JA{{else}}NEI{{/if}}</td>
         <td>{{WHEELS}}</td>
     </tr>
     {{/each}}

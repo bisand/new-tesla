@@ -88,6 +88,9 @@ app.get('/', async (req, res) => {
         return priceA - priceB;
     });
 
+    // Filter resultsArray to include only records with TRIM that includes "LRAWD"
+    resultsArray = resultsArray.filter(result => result.TRIM?.includes("LRAWD"));
+
     var visualizerData = {
         results: resultsArray.map((result) => {
             let isTowing = result.ADL_OPTS?.includes("TOWING") || false;
