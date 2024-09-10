@@ -12,8 +12,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 
-// Routes// Include the tesla.data.js module
-
+// Routes
 app.get('/', async (req, res) => {
     const data = await teslaData.fetchData();
 
