@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  new-tesla:
+    image: bisand/new-tesla
+    ports:
+      - "3003:3000"
+    restart: always
+    environment:
+      NODE_ENV: production
