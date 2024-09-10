@@ -2,7 +2,7 @@ const axios = require('axios');
 
 // Fetch data from Tesla API
 async function fetchData() {
-    const url = 'https://www.tesla.com/inventory/api/v4/inventory-results?query={"query":{"model":"m3","condition":"used","options":{"TRIM":["LRAWD"],"INTERIOR":["PREMIUM_BLACK"],"ADL_OPTS":["TOWING","PERFORMANCE_UPGRADE"]},"arrangeby":"Odometer","order":"asc","market":"NO","language":"no","lng":10.7343,"lat":59.9016,"zip":"3173","range":0,"region":"NO"},"offset":0,"count":50,"outsideOffset":0,"outsideSearch":false,"isFalconDeliverySelectionEnabled":false,"version":null}';
+    const url = 'https://www.tesla.com/inventory/api/v4/inventory-results?query={"query":{"model":"m3","condition":"used","options":{"TRIM":["LRAWD"],"INTERIOR":["PREMIUM_BLACK"],"ADL_OPTS":[]},"arrangeby":"Odometer","order":"asc","market":"NO","language":"no","lng":10.7343,"lat":59.9016,"zip":"3173","range":0,"region":"NO"},"offset":0,"count":50,"outsideOffset":0,"outsideSearch":false,"isFalconDeliverySelectionEnabled":false,"version":null}';
     const options = {
         headers: {
             'Content-Type': 'application/json',
