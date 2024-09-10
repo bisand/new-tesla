@@ -1,15 +1,13 @@
 <table class="tftable" border="1">
     <tr>
         <th>Farge</th>
-        {{!-- <th>Name</th> --}}
-        <th>Modell</th>
-        <th>Pris</th>
-        {{!-- <th>Model</th> --}}
-        <th>KM</th>
-        <th>Sted</th>
+        <th onclick="sortTable('Modell')" class="sortable">Modell <span id="sortIndicatorModell"></span></th>
+        <th onclick="sortTable('Pris')" class="sortable">Pris <span id="sortIndicatorPris"></span></th>
+        <th onclick="sortTable('KM')" class="sortable">KM <span id="sortIndicatorKM"></span></th>
+        <th onclick="sortTable('Sted')" class="sortable">Sted <span id="sortIndicatorSted"></span></th>
         <th>HF</th>
         <th>Perf</th>
-        <th>Hjul</th>
+        <th onclick="sortTable('Hjul')" class="sortable">Hjul <span id="sortIndicatorHjul"></span></th>
     </tr>
 
     {{#each response.results}}
@@ -34,10 +32,8 @@
                     src="https://static-assets.tesla.com/configurator/compositor?context=design_studio_2?&bkba_opt=1&view=STUD_3QTR&size=1400&model=m3&options={{OptionCodeList}}&crop=1400,850,300,130&">
             </a>
         </td>
-        {{!-- <td><a href="{{Link}}" target="_blank">{{VIN}}</a></td> --}}
         <td>{{Year}}</td>
         <td><strong>{{Price}},-</strong></td>
-        {{!-- <td>{{Model}}</td> --}}
         <td>{{Odometer}}</td>
         <td>{{City}}</td>
         <td>{{#if Towing}}JA{{else}}NEI{{/if}}</td>
@@ -46,3 +42,50 @@
     </tr>
     {{/each}}
 </table>
+
+<script>
+    let sortOrder = {
+        Modell: 'asc',
+        Pris: 'asc',
+        KM: 'asc',
+        Sted: 'asc',
+        Hjul: 'asc'
+    };
+
+    function sortTable(column) {
+        const table = document.querySelector('.tftable');
+        const rows = Array.from(table.querySelectorAll('tr:nth-child(n+2)'));
+        const columnIndex = {
+            Modell: 1,
+            Pris: 2,
+            KM: 3,
+            Sted: 4,
+            Hjul: 7
+        }[column];
+
+        rows.sort((a, b) => {
+            const cellA = a.children[columnIndex].innerText;
+            const cellB = b.children[columnIndex].innerText;
+
+            if (sortOrder[column] === 'asc') {
+                return cellA.localeCompare(cellB, undefined, { numeric: true });
+            } else {
+                return cellB.localeCompare(cellA, undefined, { numeric: true });
+            }
+        });
+
+        sortOrder[column] = sortOrder[column] === 'asc' ? 'desc' : 'asc';
+
+        rows.forEach(row => table.appendChild(row));
+
+        updateSortIndicators(column);
+    }
+
+    function updateSortIndicators(column) {
+        const indicators = document.querySelectorAll('th span');
+        indicators.forEach(indicator => indicator.innerText = '');
+
+        const indicator = document.getElementById(`sortIndicator${column}`);
+        indicator.innerText = sortOrder[column] === 'asc' ? '↑' : '↓';
+    }
+</script>
