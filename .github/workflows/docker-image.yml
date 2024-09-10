@@ -39,6 +39,9 @@ jobs:
           echo $MULTI_LINES_TEXT >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
+      - name: Update VERSION file
+        run: echo "${{ github.ref }}" > VERSION
+
       - name: Set alt DOCKER_TAGS environment variable
         if: steps.meta.outputs.tags == null
         run: echo "DOCKER_TAGS=bisand/new-tesla:beta-${{ github.run_id }}" >> $GITHUB_ENV

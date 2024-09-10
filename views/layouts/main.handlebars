@@ -1,11 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Website</title>
+    <style type="text/css">
+        body {
+            background-color: #282a2e;
+            color: #c5c8c6;
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+
+        .tftable {
+            font-family: sans-serif;
+            font-size: 14px;
+            color: #c5c8c6;
+            width: 100%;
+            border-width: 1px;
+            border-color: #1d1f21;
+            border-collapse: collapse;
+            background-color: #282a2e;
+        }
+
+        .tftable th {
+            font-size: 18px;
+            background-color: #374b41;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #1d1f21;
+            text-align: left;
+            color: #c5c8c6;
+        }
+
+        .tftable tr {
+            background-color: #282a2e;
+        }
+
+        .tftable td {
+            font-size: 14px;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #1d1f21;
+        }
+
+        .tftable tr:hover {
+            background-color: #414037;
+        }
+
+        .header {
+            position: fixed;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: rgb(197, 197, 197);
+            text-align: center;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .footer {
+            position: fixed;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: rgb(197, 197, 197);
+            text-align: center;
+        }
+
+        .content {
+            padding-top: 30px;
+            padding-bottom: 50px;
+        }
+
+        a {
+            color: inherit;
+        }
+    </style>
+
 </head>
+
 <body>
-    {{{body}}}
+    <div class="header">
+        Ny (brukt) Tesla model 3
+    </div>
+    <div class="content">
+        {{{body}}}
+    </div>
+    <div class="footer">
+        Version: {{readFile "VERSION"}}
+    </div>
 </body>
+
 </html>
